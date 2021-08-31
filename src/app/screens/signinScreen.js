@@ -40,7 +40,7 @@ const SigninScreen = () => {
                     secureTextEntry
                   />
                 </View>
-                <AppButton text="Login to account" style={{ marginTop: 30, elevation: 3 }} />
+                <AppButton text="Login to account" style={{ marginTop: 30, elevation: 3 }} onPress={handleSubmit} />
               </>
             )}
           </Formik>
