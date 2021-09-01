@@ -5,7 +5,7 @@ import Screen from '../components/screen';
 import colors from '../config/colors';
 import AppButton from '../components/button';
 
-const SignupScreen = () => {
+const SignupScreen = ({ navigation }) => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -53,7 +53,7 @@ const SignupScreen = () => {
           </Formik>
           <View style={{ marginTop: 40, flexDirection: 'row' }}>
             <Text>Already have an account? </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
               <Text>
                 Login
               </Text>

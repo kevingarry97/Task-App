@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import AppButton from '../components/button';
 import Screen from '../components/screen';
 import colors from '../config/colors';
@@ -23,9 +23,9 @@ const categories = [
   },
 ]
 
-const ListingScreen = () => {
+const ListingScreen = ({ navigation }) => {
 
-  const [data, setData] = useState([1, 2, 3, 4, 5])
+  const [data, setData] = useState([1, 2, 3, 4, 5, 6, 7, 8])
 
   return (
     <Screen style={styles.container}>
@@ -35,9 +35,9 @@ const ListingScreen = () => {
           <Text style={{ fontSize: 20, color: '#171717', fontWeight: '700' }}>You've got</Text>
           <Text style={{ fontSize: 20, color: '#171717', fontWeight: '700' }}>8 tasks today</Text>
         </View>
-        <AppButton text="Add task" width="35%" color="dark" />
+        <AppButton text="Add task" width="35%" color="dark" onPress={() => navigation.navigate('CreateListings')} />
       </View>
-      <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#f5f5f5', paddingVertical: 7, paddingHorizontal: 10, borderRadius: 5, marginVertical: 5 }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#ececec', paddingVertical: 7, paddingHorizontal: 10, borderRadius: 5, marginVertical: 5 }}>
         <Feather name="search" size={18} color="black" style={{ marginRight: 5 }} />
         <TextInput
           placeholderTextColor="#D5D5D5"
@@ -46,25 +46,25 @@ const ListingScreen = () => {
       </View>
       <View style={styles.content}>
         <Text style={{ fontSize: 18, fontWeight: 'bold' }}>My tasks</Text>
-        <View style={styles.tasks}>
-          {data.map((d, key) => (
-            <View key={key} style={styles.task}>
-              <Text style={{ fontWeight: '700' }}>Medical LP</Text>
-              <View style={{ marginVertical: 10 }}>
-                <Text style={{ color: '#C8C8C8' }}>Make a landing page and mobile app</Text>
-              </View>
-              <View style={styles.category}>
-                {categories.map((category, key) => (
-                  <TouchableOpacity key={key} style={[styles.item, { backgroundColor: category.color }]}>
-                    <Text style={{ color: colors.white, fontSize: 12 }}>{category.value}</Text>
-                  </TouchableOpacity>
-                ))}
-              </View>
-              <Text style={{ color: '#787878', fontWeight: '700' }}>30-Aug-2021</Text>
-            </View>
-          ))}
-        </View>
       </View>
+      <ScrollView contentContainerStyle={styles.tasks} showsVerticalScrollIndicator={false}>
+        {data.map((d, key) => (
+          <View key={key} style={styles.task}>
+            <Text style={{ fontWeight: '700' }}>Medical LP</Text>
+            <View style={{ marginVertical: 10 }}>
+              <Text style={{ color: '#C8C8C8' }}>Make a landing page and mobile app</Text>
+            </View>
+            <View style={styles.category}>
+              {categories.map((category, key) => (
+                <TouchableOpacity key={key} style={[styles.item, { backgroundColor: category.color }]}>
+                  <Text style={{ color: colors.white, fontSize: 12 }}>{category.value}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+            <Text style={{ color: '#787878', fontWeight: '700' }}>30-Aug-2021</Text>
+          </View>
+        ))}
+      </ScrollView>
     </Screen>
   );
 }
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   container: {
     paddingHorizontal: 20,
-    paddingVertical: 50,
+    paddingTop: 50,
     backgroundColor: '#F5F5F5'
   },
   content: {
@@ -99,13 +99,13 @@ const styles = StyleSheet.create({
   tasks: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop: 20
+    paddingVertical: 20
   },
   top: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: 25
+    paddingVertical: 25
   }
 })
 

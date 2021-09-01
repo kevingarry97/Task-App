@@ -35,7 +35,7 @@ const categories = [
   },
 ]
 
-const CreateListingScreen = () => {
+const CreateListingScreen = ({ navigation }) => {
   const [date, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
@@ -81,7 +81,7 @@ const CreateListingScreen = () => {
           <View style={styles.top}>
             <View />
             <Text style={{ fontSize: 16, fontWeight: '700', color: colors.dark }}>Create Task</Text>
-            <TouchableOpacity onPress={() => console.log('Nice')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Listings')}>
               <AntDesign name="close" size={18} color={colors.muted} />
             </TouchableOpacity>
           </View>

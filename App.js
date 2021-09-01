@@ -1,11 +1,12 @@
 import React from 'react';
-import CreateListingScreen from './src/app/screens/createListingScreen';
-import ListingScreen from './src/app/screens/listingScreen';
-import SigninScreen from './src/app/screens/signinScreen';
-import SignupScreen from './src/app/screens/signupScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import AppNavigator from './src/routes/appNavigator';
+import AuthNavigator from './src/routes/authNavigator';
 
 export default function App() {
   return (
-    <ListingScreen />
+    <NavigationContainer>
+      <AppNavigator />
+    </NavigationContainer>
   );
 }
